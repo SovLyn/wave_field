@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080e1a">
+  <meta name="description" content="An interactive instrument for exploring hydrogen orbitals.">
+  <title>Wave Field — Hydrogen orbital explorer</title>
+  <link rel="icon" href="data:,">
+  <link data-trunk rel="rust" data-bin="wave_field">
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #080e1a; color: #dceaf6; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body { background: radial-gradient(ellipse at 50% 45%, #142a42, #080e1a 65%); }
+    canvas { display: block; width: 100%; height: 100%; outline: none; }
+    .status { position: fixed; z-index: 2; left: max(20px, env(safe-area-inset-left)); bottom: max(20px, env(safe-area-inset-bottom)); max-width: min(410px, calc(100vw - 40px)); padding: 16px 18px; border: 1px solid #31516a; border-radius: 12px; background: rgba(9, 20, 33, .94); box-shadow: 0 12px 48px #0007; line-height: 1.5; }
+    .status[hidden] { display: none; }
+    .eyebrow { color: #83d6e6; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .status p { margin: 6px 0 0; color: #b5c8d8; font-size: 13px; }
+    .status button { margin-top: 10px; padding: 5px 0; color: #a5e9f2; background: none; border: 0; cursor: pointer; font: inherit; font-size: 12px; text-decoration: underline; }
+    .status button:focus-visible { outline: 2px solid #83d6e6; outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <canvas id="wave-canvas" aria-label="Hydrogen orbital visualization"></canvas>
+  <div class="status" id="status" role="status" aria-live="polite">
+    <div class="eyebrow" id="status-title">Wave Field · Starting</div>
+    <p id="status-message">Checking WebGPU and loading the visualization…</p>
+  </div>
+  <noscript><div class="status">JavaScript is required to load the WebAssembly application.</div></noscript>
+  <script>
+    // Rust owns the status overlay after startup and reports initialization errors.
+    if (!navigator.gpu) {
+      document.getElementById('status-title').textContent = 'WebGPU unavailable';
+      document.getElementById('status-message').textContent = 'Use a WebGPU-capable browser on HTTPS or localhost, and enable hardware acceleration.';
+    }
+  </script>
+</body>
+</html>

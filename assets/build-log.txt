@@ -1,0 +1,7 @@
+2026-10-27T13:05:30.796934Z  INFO Starting trunk 0.21.14
+2026-10-27T13:05:30.802112Z  INFO Found an update of trunk: 0.21.14 -> 0.22.1
+2026-10-27T13:05:31.193200Z  INFO starting build
+   Compiling wave_field v0.1.0 (C:\Users\SovLy\Documents\rust\wave_field)
+    Finished `release` profile [optimized] target(s) in 1.13s
+2026-10-27T13:05:37.760935Z  INFO applying new distribution
+2026-10-27T13:05:37.764328Z  INFO success
